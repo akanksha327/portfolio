@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "src/app/api/**/*.ts": {
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "EMAIL_USER": "advaysharma248@gmail.com",
+    "EMAIL_PASS": "nhep lifv wint heyw"
+  }
+}
