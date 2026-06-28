@@ -2,8 +2,10 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { ExternalLink, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 const projects = [
+  { id: 7, title: 'SmartERP SaaS Platform', tech: ['Next.js', 'React', 'TypeScript', 'Tailwind', 'Recharts'], descriptions: ['Premium SaaS ledger, inventory catalog database, and customer CRM system', 'Features state filters, stock alerts, loading skeletons, and localized theme toggling'], color: '#2563EB', colorRgb: '37, 99, 235', icon: '📊', isSmartErp: true },
   { id: 1, title: 'Color Image Enhancement Tool', tech: ['Python', 'OpenCV', 'NumPy', 'Matplotlib'], descriptions: ['Improved image quality by adjusting brightness/contrast in HSV color space', 'Optimized image processing, reducing execution time for 100+ images'], color: '#f97316', colorRgb: '249, 115, 22', icon: '🎨' },
   { id: 2, title: 'DSA Implementations', tech: ['Java'], descriptions: ['Implemented Quick Sort, Binary Search, custom linked list', 'Optimized sorting from O(n²) to O(n log n)'], color: '#ef4444', colorRgb: '239, 68, 68', icon: '⚙️' },
   { id: 3, title: 'Maze Game', tech: ['HTML', 'CSS', 'JavaScript'], descriptions: ['Interactive maze game with collision detection and progress tracking', 'Designed 50+ playable levels with increasing difficulty'], color: '#22c55e', colorRgb: '34, 197, 94', icon: '🎮' },
@@ -35,6 +37,7 @@ export default function ProjectsSection() {
     { x: 80, y: 60, scale: 0.8, rotate: -4 },
     { x: -90, y: 50, scale: 0.85, rotate: 7 },
     { x: 70, y: -80, scale: 0.8, rotate: -5 },
+    { x: 40, y: 90, scale: 0.75, rotate: 6 },
   ];
 
   return (
@@ -143,24 +146,45 @@ export default function ProjectsSection() {
                         </li>
                       ))}
                     </ul>
-                    <button
-                      onClick={() => setSelectedProject(project.id)}
-                      className="relative mt-2 flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg text-sm font-medium border transition-all duration-300 cursor-pointer hover:translate-x-1"
-                      style={{ borderColor: `rgba(${project.colorRgb},0.3)`, color: project.color }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = `rgba(${project.colorRgb},0.1)`;
-                        e.currentTarget.style.borderColor = `rgba(${project.colorRgb},0.6)`;
-                        e.currentTarget.style.boxShadow = `0 0 20px rgba(${project.colorRgb},0.3), 0 0 40px rgba(${project.colorRgb},0.1)`;
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.borderColor = `rgba(${project.colorRgb},0.3)`;
-                        e.currentTarget.style.boxShadow = 'none';
-                      }}
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      View Details
-                    </button>
+                    {project.isSmartErp ? (
+                      <Link
+                        href="/smarterp"
+                        className="relative mt-2 flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg text-sm font-medium border transition-all duration-300 cursor-pointer hover:translate-x-1"
+                        style={{ borderColor: `rgba(${project.colorRgb},0.3)`, color: project.color }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = `rgba(${project.colorRgb},0.1)`;
+                          e.currentTarget.style.borderColor = `rgba(${project.colorRgb},0.6)`;
+                          e.currentTarget.style.boxShadow = `0 0 20px rgba(${project.colorRgb},0.3), 0 0 40px rgba(${project.colorRgb},0.1)`;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'transparent';
+                          e.currentTarget.style.borderColor = `rgba(${project.colorRgb},0.3)`;
+                          e.currentTarget.style.boxShadow = 'none';
+                        }}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        Open ERP Demo
+                      </Link>
+                    ) : (
+                      <button
+                        onClick={() => setSelectedProject(project.id)}
+                        className="relative mt-2 flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-lg text-sm font-medium border transition-all duration-300 cursor-pointer hover:translate-x-1"
+                        style={{ borderColor: `rgba(${project.colorRgb},0.3)`, color: project.color }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = `rgba(${project.colorRgb},0.1)`;
+                          e.currentTarget.style.borderColor = `rgba(${project.colorRgb},0.6)`;
+                          e.currentTarget.style.boxShadow = `0 0 20px rgba(${project.colorRgb},0.3), 0 0 40px rgba(${project.colorRgb},0.1)`;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'transparent';
+                          e.currentTarget.style.borderColor = `rgba(${project.colorRgb},0.3)`;
+                          e.currentTarget.style.boxShadow = 'none';
+                        }}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        View Details
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
