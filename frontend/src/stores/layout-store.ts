@@ -39,7 +39,7 @@ export const useLayoutStore = create<LayoutState>()(
     {
       name: 'mentorhub-layout',
       storage: createJSONStorage(() => 
-        typeof window !== 'undefined' 
+        typeof window !== 'undefined' && window.localStorage && typeof window.localStorage.getItem === 'function'
           ? window.localStorage 
           : {
               getItem: () => null,

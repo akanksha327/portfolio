@@ -126,7 +126,7 @@ export const useEditorStore = create<EditorState>()(
     {
       name: 'editor-state',
       storage: createJSONStorage(() => 
-        typeof window !== 'undefined' 
+        typeof window !== 'undefined' && window.localStorage && typeof window.localStorage.getItem === 'function'
           ? window.localStorage 
           : {
               getItem: () => null,

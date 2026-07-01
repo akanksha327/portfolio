@@ -217,9 +217,11 @@ export default function SmartERPPage() {
   useEffect(() => {
     setMounted(true);
     // Load theme setting
-    const savedTheme = localStorage.getItem('smarterp-theme');
-    if (savedTheme === 'dark') {
-      setTheme('dark');
+    if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined' && typeof window.localStorage.getItem === 'function') {
+      const savedTheme = window.localStorage.getItem('smarterp-theme');
+      if (savedTheme === 'dark') {
+        setTheme('dark');
+      }
     }
   }, []);
 
@@ -227,7 +229,9 @@ export default function SmartERPPage() {
   const toggleTheme = () => {
     const nextTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(nextTheme);
-    localStorage.setItem('smarterp-theme', nextTheme);
+    if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined' && typeof window.localStorage.setItem === 'function') {
+      window.localStorage.setItem('smarterp-theme', nextTheme);
+    }
     triggerToast(`Switched to ${nextTheme} theme`, 'info');
   };
 
